@@ -366,7 +366,7 @@ origin	git@github.com:luqinghua007/learngit.git (fetch)
 origin	git@github.com:luqinghua007/learngit.git (push)
 qinghua@luqinghuadeMacBook-Pro learngit % 
 
-
+Update some error thing
 
 
 
