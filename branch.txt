@@ -14,4 +14,4 @@ qinghua@luqinghuadeMBP learngit % git branch
 qinghua@luqinghuadeMBP learngit % touch branch.txt
 qinghua@luqinghuadeMBP learngit % 
 
-Updat ebranch info
+Updat ebranch info, try issue fix
