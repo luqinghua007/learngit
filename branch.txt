@@ -1,0 +1,15 @@
+Last login: Wed Nov 16 15:25:53 on ttys000
+qinghua@luqinghuadeMBP ~ % pwd
+/Users/qinghua
+qinghua@luqinghuadeMBP ~ % cd /user/qinghua
+cd: no such file or directory: /user/qinghua
+qinghua@luqinghuadeMBP ~ % cd /User/qinghua
+cd: no such file or directory: /User/qinghua
+qinghua@luqinghuadeMBP ~ % cd learngit
+qinghua@luqinghuadeMBP learngit % git checkout -b dev
+Switched to a new branch 'dev'
+qinghua@luqinghuadeMBP learngit % git branch
+* dev
+  master
+qinghua@luqinghuadeMBP learngit % touch branch.txt
+qinghua@luqinghuadeMBP learngit % 
