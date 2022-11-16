@@ -1,8 +1,367 @@
-Git is a version control system.
-Git is free software.
+Last login: Mon Nov 14 23:41:03 on ttys000
+qinghua@luqinghuadeMacBook-Pro ~ % git config --global user.name
+花下客
+qinghua@luqinghuadeMacBook-Pro ~ % git config --global user.email
+qinghua.lu@aliyun.com
+qinghua@luqinghuadeMacBook-Pro ~ % git config --global user.password
+s@mps@7EGiDyLRU
+qinghua@luqinghuadeMacBook-Pro ~ % mkdir learngit
+qinghua@luqinghuadeMacBook-Pro ~ % cd learngit
+qinghua@luqinghuadeMacBook-Pro learngit % pwd
+/Users/qinghua/learngit
+qinghua@luqinghuadeMacBook-Pro learngit % git init
+Initialized empty Git repository in /Users/qinghua/learngit/.git/
+qinghua@luqinghuadeMacBook-Pro learngit % ls -ah
+.	..	.git
+qinghua@luqinghuadeMacBook-Pro learngit % touch first.txt
+qinghua@luqinghuadeMacBook-Pro learngit % ls -ah         
+.		..		.git		first.txt
+qinghua@luqinghuadeMacBook-Pro learngit % pwd        
+/Users/qinghua/learngit
+qinghua@luqinghuadeMacBook-Pro learngit % touch /user/qinghua/learngit/first.txt
+touch: /user/qinghua/learngit/first.txt: No such file or directory
+qinghua@luqinghuadeMacBook-Pro learngit % touch ~/user/qinghua/learngit/first.txt
+touch: /Users/qinghua/user/qinghua/learngit/first.txt: No such file or directory
+qinghua@luqinghuadeMacBook-Pro learngit % touch first.txt
+qinghua@luqinghuadeMacBook-Pro learngit % echo "set string in first text"
+set string in first text
+qinghua@luqinghuadeMacBook-Pro learngit % echo "set string in second text"
+set string in second text
+qinghua@luqinghuadeMacBook-Pro learngit % echo "set string in second text" >> ~/.inputrc
+qinghua@luqinghuadeMacBook-Pro learngit % 
+qinghua@luqinghuadeMacBook-Pro learngit % 
+qinghua@luqinghuadeMacBook-Pro learngit % git add first.txt
+qinghua@luqinghuadeMacBook-Pro learngit % git commit -m "wrote a first txt file"
+[master (root-commit) c4a11fd] wrote a first txt file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 first.txt
+qinghua@luqinghuadeMacBook-Pro learngit % git diff first.txt
+diff --git a/first.txt b/first.txt
+index d8036c1..aa3f8dd 100644
+--- a/first.txt
++++ b/first.txt
+@@ -1,2 +1,4 @@
+ Git is a version control system.
+-Git is free software.
+\ No newline at end of file
++Git is free software.
++
++Something is change
+\ No newline at end of file
+qinghua@luqinghuadeMacBook-Pro learngit % git add first.txt,first copy.txt
+fatal: pathspec 'first.txt,first' did not match any files
+qinghua@luqinghuadeMacBook-Pro learngit % git add first.txt first copy.txt
+fatal: pathspec 'first' did not match any files
+qinghua@luqinghuadeMacBook-Pro learngit % git add first.txt firstCopy.txt 
+qinghua@luqinghuadeMacBook-Pro learngit % git commit -m "test submit two file together"
+[master 31336d7] test submit two file together
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+ create mode 100644 firstCopy.txt
+qinghua@luqinghuadeMacBook-Pro learngit % ls -ah
+.		..		.git		first.txt	firstCopy.txt
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+nothing to commit, working tree clean
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
 
-Something is change
+	modified:   first.txt
 
-Change something again
+no changes added to commit (use "git add" and/or "git commit -a")
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
 
-Test change004
+	modified:   first.txt
+	modified:   firstCopy.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+qinghua@luqinghuadeMacBook-Pro learngit % git diff 
+diff --git a/first.txt b/first.txt
+index aa3f8dd..092bb39 100644
+--- a/first.txt
++++ b/first.txt
+@@ -1,4 +1,6 @@
+@@ -1,4 +1,6 @@
+@@ -1,4 +1,6 @@
+diff --git a/first.txt b/first.txt
+index aa3f8dd..092bb39 100644
+--- a/first.txt
++++ b/first.txt
+@@ -1,4 +1,6 @@
+ Git is a version control system.
+ Git is free software.
+ 
+-Something is change
+\ No newline at end of file
++Something is change
++
++Change something again
+\ No newline at end of file
+diff --git a/firstCopy.txt b/firstCopy.txt
+index c25dac3..35e80b3 100644
+--- a/firstCopy.txt
++++ b/firstCopy.txt
+@@ -1,4 +1,6 @@
+ Git is a version control system.
+ Git is free software.
+ 
+-Copy file is change
+\ No newline at end of file
++Copy file is change
++
++Copy again
+\ No newline at end of file
+qinghua@luqinghuadeMacBook-Pro learngit % git log
+commit 31336d7572a00f9297c877ba3dcce92cc4d3f367 (HEAD -> master)
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 17:01:05 2022 +0800
+
+    test submit two file together
+
+commit c4a11fd39b63def82b41b0f819f5a87b456d6f47
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 15:43:26 2022 +0800
+
+    wrote a first txt file
+qinghua@luqinghuadeMacBook-Pro learngit % git add .
+qinghua@luqinghuadeMacBook-Pro learngit % git commit -m "update this file aggin"
+[master 39dc80c] update this file aggin
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+qinghua@luqinghuadeMacBook-Pro learngit % git log
+commit 39dc80cd3d0759cbf326fdb05c635abc65e6a166 (HEAD -> master)
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 17:08:53 2022 +0800
+
+    update this file aggin
+
+commit 31336d7572a00f9297c877ba3dcce92cc4d3f367
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 17:01:05 2022 +0800
+
+    test submit two file together
+
+commit c4a11fd39b63def82b41b0f819f5a87b456d6f47
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 15:43:26 2022 +0800
+
+    wrote a first txt file
+qinghua@luqinghuadeMacBook-Pro learngit % git log --pretty=oneline
+39dc80cd3d0759cbf326fdb05c635abc65e6a166 (HEAD -> master) update this file aggin
+31336d7572a00f9297c877ba3dcce92cc4d3f367 test submit two file together
+c4a11fd39b63def82b41b0f819f5a87b456d6f47 wrote a first txt file
+qinghua@luqinghuadeMacBook-Pro learngit % git reset --hard HEAD^
+HEAD is now at 31336d7 test submit two file together
+qinghua@luqinghuadeMacBook-Pro learngit % git log --pretty=oneline
+31336d7572a00f9297c877ba3dcce92cc4d3f367 (HEAD -> master) test submit two file together
+c4a11fd39b63def82b41b0f819f5a87b456d6f47 wrote a first txt file
+qinghua@luqinghuadeMacBook-Pro learngit % git reset --hard HEAD^  
+HEAD is now at c4a11fd wrote a first txt file
+qinghua@luqinghuadeMacBook-Pro learngit % git log --pretty=oneline
+c4a11fd39b63def82b41b0f819f5a87b456d6f47 (HEAD -> master) wrote a first txt file
+qinghua@luqinghuadeMacBook-Pro learngit % git reset --hard HEAD^  
+fatal: ambiguous argument 'HEAD^': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+qinghua@luqinghuadeMacBook-Pro learngit % git log --pretty=oneline
+c4a11fd39b63def82b41b0f819f5a87b456d6f47 (HEAD -> master) wrote a first txt file
+qinghua@luqinghuadeMacBook-Pro learngit % git reset --hard 39dc
+HEAD is now at 39dc80c update this file aggin
+qinghua@luqinghuadeMacBook-Pro learngit % git reflog
+39dc80c (HEAD -> master) HEAD@{0}: reset: moving to 39dc
+c4a11fd HEAD@{1}: reset: moving to HEAD^
+31336d7 HEAD@{2}: reset: moving to HEAD^
+39dc80c (HEAD -> master) HEAD@{3}: commit: update this file aggin
+31336d7 HEAD@{4}: commit: test submit two file together
+c4a11fd HEAD@{5}: commit (initial): wrote a first txt file
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+nothing to commit, working tree clean
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   first.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+qinghua@luqinghuadeMacBook-Pro learngit % git add first.txt
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   first.txt
+
+qinghua@luqinghuadeMacBook-Pro learngit % git commit -m "尝试将文件添加到暂存区后与二次修改的数据进行比较"
+[master 337c2ef] 尝试将文件添加到暂存区后与二次修改的数据进行比较
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   first.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+qinghua@luqinghuadeMacBook-Pro learngit % git add .
+qinghua@luqinghuadeMacBook-Pro learngit % git add .
+qinghua@luqinghuadeMacBook-Pro learngit % git commit -m "两次修改后一次commit"
+[master 82337b7] 两次修改后一次commit
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+nothing to commit, working tree clean
+qinghua@luqinghuadeMacBook-Pro learngit % git add .
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   first.txt
+
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   first.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   first.txt
+
+qinghua@luqinghuadeMacBook-Pro learngit % git checkout -- first.txt
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   first.txt
+
+qinghua@luqinghuadeMacBook-Pro learngit % git add .                
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   first.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   first.txt
+
+qinghua@luqinghuadeMacBook-Pro learngit % git reset head first.txt
+Unstaged changes after reset:
+M	first.txt
+qinghua@luqinghuadeMacBook-Pro learngit % git status              
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   first.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+qinghua@luqinghuadeMacBook-Pro learngit % git reset HEAD first.txt
+Unstaged changes after reset:
+M	first.txt
+qinghua@luqinghuadeMacBook-Pro learngit % git status              
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   first.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+qinghua@luqinghuadeMacBook-Pro learngit % rm firstCopy.txt
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   first.txt
+	deleted:    firstCopy.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+qinghua@luqinghuadeMacBook-Pro learngit % git rm firstCopy.txt
+rm 'firstCopy.txt'
+qinghua@luqinghuadeMacBook-Pro learngit % git commit -m "del firstCopy.txt"
+[master 5f4a966] del firstCopy.txt
+ 1 file changed, 6 deletions(-)
+ delete mode 100644 firstCopy.txt
+qinghua@luqinghuadeMacBook-Pro learngit % rm first.txt
+qinghua@luqinghuadeMacBook-Pro learngit % git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	deleted:    first.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+qinghua@luqinghuadeMacBook-Pro learngit % git checkout -- first.txt
+qinghua@luqinghuadeMacBook-Pro learngit % ssh-keygen -t rsa -C "luqinghua007@gmail.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/qinghua/.ssh/id_rsa): 
+Created directory '/Users/qinghua/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /Users/qinghua/.ssh/id_rsa
+Your public key has been saved in /Users/qinghua/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:dw7pQA29ZZMMiyiuzHMAYsaF/X6+D5FOUTnaXcrCgIs luqinghua007@gmail.com
+The key's randomart image is:
++---[RSA 3072]----+
+|  o.  . .ooo .   |
+|.... . o.*..*.   |
+|o+  + o.B *+o.   |
+|+. E + oo+.=     |
+|  . o  +S = .    |
+| o o .o..+ +     |
+|  = . oo  . .    |
+|   o   ..        |
+|       .o.       |
++----[SHA256]-----+
+qinghua@luqinghuadeMacBook-Pro learngit % 
+qinghua@luqinghuadeMacBook-Pro learngit % ls -ah
+.		..		.git		first.txt
+qinghua@luqinghuadeMacBook-Pro learngit % open ~/.ssh
+qinghua@luqinghuadeMacBook-Pro learngit % git remote add origin git@github.com:luqinghua007/learngit.git
+qinghua@luqinghuadeMacBook-Pro learngit % git push -u origin master
+The authenticity of host 'github.com (20.27.177.113)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? git remote add origin https://github.com/luqinghua007/learngit.git
+Please type 'yes', 'no' or the fingerprint: yes
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+Counting objects: 19, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (17/17), done.
+Writing objects: 100% (19/19), 1.76 KiB | 1.76 MiB/s, done.
+Total 19 (delta 5), reused 0 (delta 0)
+remote: Resolving deltas: 100% (5/5), done.
+remote: no repo id givem
+To github.com:luqinghua007/learngit.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+qinghua@luqinghuadeMacBook-Pro learngit % git push -u origin master                                     
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+Everything up-to-date
+qinghua@luqinghuadeMacBook-Pro learngit % git remote -v
+origin	git@github.com:luqinghua007/learngit.git (fetch)
+origin	git@github.com:luqinghua007/learngit.git (push)
+qinghua@luqinghuadeMacBook-Pro learngit % 
