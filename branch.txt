@@ -12,6 +12,531 @@ qinghua@luqinghuadeMBP learngit % git branch
 * dev
   master
 qinghua@luqinghuadeMBP learngit % touch branch.txt
-qinghua@luqinghuadeMBP learngit % 
+qinghua@luqinghuadeMBP learngit % git add .
+qinghua@luqinghuadeMBP learngit % git commit -m "create a new branch dev"
+[dev 5310916] create a new branch dev
+ 2 files changed, 23 insertions(+)
+ create mode 100644 branch.txt
+qinghua@luqinghuadeMBP learngit % git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+qinghua@luqinghuadeMBP learngit % git merge dev
+Updating af9592f..5310916
+Fast-forward
+ branch.txt | 15 +++++++++++++++
+ first.txt  |  8 ++++++++
+ 2 files changed, 23 insertions(+)
+ create mode 100644 branch.txt
+qinghua@luqinghuadeMBP learngit % git branch -d dev
+Deleted branch dev (was 5310916).
+qinghua@luqinghuadeMBP learngit % git branch
+* master
+qinghua@luqinghuadeMBP learngit % git branch newbranch
+qinghua@luqinghuadeMBP learngit % git branch
+* master
+  newbranch
+qinghua@luqinghuadeMBP learngit % git switch newbranch
+git: 'switch' is not a git command. See 'git --help'.
+qinghua@luqinghuadeMBP learngit % git checkout newbranch
+Switched to branch 'newbranch'
+qinghua@luqinghuadeMBP learngit % git branch
+  master
+* newbranch
+qinghua@luqinghuadeMBP learngit % git add first.txt
+qinghua@luqinghuadeMBP learngit % git commit -m "add confic file"
+[newbranch 9607b45] add confic file
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+qinghua@luqinghuadeMBP learngit % git swich -c master
+git: 'swich' is not a git command. See 'git --help'.
+qinghua@luqinghuadeMBP learngit % git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+qinghua@luqinghuadeMBP learngit % git branch
+* master
+  newbranch
+qinghua@luqinghuadeMBP learngit % git add first.txt
+qinghua@luqinghuadeMBP learngit % git commit -m "add master file change example"
+[master 1f827bc] add master file change example
+ 1 file changed, 1 insertion(+)
+qinghua@luqinghuadeMBP learngit % git merge featurel
+merge: featurel - not something we can merge
+qinghua@luqinghuadeMBP learngit % git merge newbranch
+Auto-merging first.txt
+CONFLICT (content): Merge conflict in first.txt
+Automatic merge failed; fix conflicts and then commit the result.
+qinghua@luqinghuadeMBP learngit % git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
 
-Updat ebranch info, try issue fix
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+	both modified:   first.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+qinghua@luqinghuadeMBP learngit % git add first.txt
+qinghua@luqinghuadeMBP learngit % git commit -m "confict fixed"
+[master 5df2a84] confict fixed
+qinghua@luqinghuadeMBP learngit % git log --graph --pretty=oneline --abbrev-commit
+*   5df2a84 (HEAD -> master) confict fixed
+|\  
+| * 9607b45 (newbranch) add confic file
+* | 1f827bc add master file change example
+|/  
+* 5310916 create a new branch dev
+* af9592f (origin/master) git command line doc
+* 5f4a966 del firstCopy.txt
+* 82337b7 两次修改后一次commit
+* 337c2ef 尝试将文件添加到暂存区后与二次修改的数据进行比较
+* 39dc80c update this file aggin
+* 31336d7 test submit two file together
+* c4a11fd wrote a first txt file
+qinghua@luqinghuadeMBP learngit % git branch -d newbranch
+Deleted branch newbranch (was 9607b45).
+qinghua@luqinghuadeMBP learngit % git branch
+* master
+qinghua@luqinghuadeMBP learngit % git checkout dev
+error: pathspec 'dev' did not match any file(s) known to git.
+qinghua@luqinghuadeMBP learngit % git checkout -b dev
+M	first.txt
+Switched to a new branch 'dev'
+qinghua@luqinghuadeMBP learngit % git add branch.txt
+qinghua@luqinghuadeMBP learngit % git commit -m "add merge"
+[dev 75abf26] add merge
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+qinghua@luqinghuadeMBP learngit % git checkout master
+M	first.txt
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+qinghua@luqinghuadeMBP learngit % git merge --no-ff -m "merge with no-ff" dev
+Merge made by the 'recursive' strategy.
+ branch.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+qinghua@luqinghuadeMBP learngit % git log
+commit 70f4e253d5121ca6d2b43981685ee2359b67d04a (HEAD -> master)
+Merge: 5df2a84 75abf26
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 20:46:38 2022 +0800
+
+    merge with no-ff
+
+commit 75abf2618fa273a96146fdd2e3e06351f6679ca9 (dev)
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 20:45:54 2022 +0800
+
+    add merge
+
+commit 5df2a84f7c83576cb98bf386423032e0d905de15
+Merge: 1f827bc 9607b45
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 20:42:11 2022 +0800
+
+    confict fixed
+
+commit 1f827bc845e1d3ee84cf7bcbdaed05b682d8687b
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 20:39:13 2022 +0800
+qinghua@luqinghuadeMBP learngit % git log --graph --pretty=oneline --abbrev-commit
+*   70f4e25 (HEAD -> master) merge with no-ff
+|\  
+| * 75abf26 (dev) add merge
+|/  
+*   5df2a84 confict fixed
+|\  
+| * 9607b45 add confic file
+* | 1f827bc add master file change example
+|/  
+* 5310916 create a new branch dev
+* af9592f (origin/master) git command line doc
+* 5f4a966 del firstCopy.txt
+* 82337b7 两次修改后一次commit
+* 337c2ef 尝试将文件添加到暂存区后与二次修改的数据进行比较
+* 39dc80c update this file aggin
+* 31336d7 test submit two file together
+* c4a11fd wrote a first txt file
+qinghua@luqinghuadeMBP learngit % git status
+On branch master
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   first.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+qinghua@luqinghuadeMBP learngit % git stash
+Saved working directory and index state WIP on master: 70f4e25 merge with no-ff
+qinghua@luqinghuadeMBP learngit % git status
+On branch master
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+qinghua@luqinghuadeMBP learngit % git checkout master
+Already on 'master'
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+qinghua@luqinghuadeMBP learngit % git checkout -b issue-101
+Switched to a new branch 'issue-101'
+qinghua@luqinghuadeMBP learngit % git add .
+qinghua@luqinghuadeMBP learngit % git commit -m "fix bug 101"
+[issue-101 11cd1b4] fix bug 101
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+qinghua@luqinghuadeMBP learngit % git switch master
+git: 'switch' is not a git command. See 'git --help'.
+qinghua@luqinghuadeMBP learngit % git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 6 commits.
+  (use "git push" to publish your local commits)
+qinghua@luqinghuadeMBP learngit % git branch
+  dev
+  issue-101
+* master
+qinghua@luqinghuadeMBP learngit % git merge --no-ff -m "merge bug fix 101" issue-101
+Merge made by the 'recursive' strategy.
+ branch.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+qinghua@luqinghuadeMBP learngit % git branch
+  dev
+  issue-101
+* master
+qinghua@luqinghuadeMBP learngit % git checkout dev
+Switched to branch 'dev'
+qinghua@luqinghuadeMBP learngit % git status
+On branch dev
+nothing to commit, working tree clean
+qinghua@luqinghuadeMBP learngit % git stash pop
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   first.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (62b61d46ea669175833e845255d54993beaa750e)
+qinghua@luqinghuadeMBP learngit % git stash list
+qinghua@luqinghuadeMBP learngit % git stash
+Saved working directory and index state WIP on dev: 75abf26 add merge
+qinghua@luqinghuadeMBP learngit % git stash list
+stash@{0}: WIP on dev: 75abf26 add merge
+qinghua@luqinghuadeMBP learngit % git status      
+On branch dev
+nothing to commit, working tree clean
+qinghua@luqinghuadeMBP learngit % git stash list
+stash@{0}: WIP on dev: 75abf26 add merge
+qinghua@luqinghuadeMBP learngit % git stash apply stash@{0}
+On branch dev
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   first.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+qinghua@luqinghuadeMBP learngit % git add .
+qinghua@luqinghuadeMBP learngit % git commit -m "update dev"
+[dev 4f488f5] update dev
+ 1 file changed, 1 deletion(-)
+qinghua@luqinghuadeMBP learngit % git status
+On branch dev
+nothing to commit, working tree clean
+qinghua@luqinghuadeMBP learngit % git stash
+No local changes to save
+qinghua@luqinghuadeMBP learngit % git stash list
+stash@{0}: WIP on dev: 75abf26 add merge
+qinghua@luqinghuadeMBP learngit % git stash pop
+On branch dev
+nothing to commit, working tree clean
+Dropped refs/stash@{0} (f484dd1648303d6c8b90e47f11c3fe6d2fd088a0)
+qinghua@luqinghuadeMBP learngit % git stash list
+qinghua@luqinghuadeMBP learngit % git branch
+* dev
+  issue-101
+  master
+qinghua@luqinghuadeMBP learngit % git cherry-pick 11cd1b4
+[dev 26c8f70] fix bug 101
+ Date: Wed Nov 16 20:52:15 2022 +0800
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+qinghua@luqinghuadeMBP learngit % git checkout -b feature-vulcan
+Switched to a new branch 'feature-vulcan'
+qinghua@luqinghuadeMBP learngit % git add firstCopy.txt
+qinghua@luqinghuadeMBP learngit % git commit -m "a new feature txt file"
+[feature-vulcan 7f07cd0] a new feature txt file
+ 1 file changed, 375 insertions(+)
+ create mode 100644 firstCopy.txt
+qinghua@luqinghuadeMBP learngit % git status
+On branch feature-vulcan
+nothing to commit, working tree clean
+qinghua@luqinghuadeMBP learngit % git checkout dev
+Switched to branch 'dev'
+qinghua@luqinghuadeMBP learngit % git branch -d feature-vulcan
+error: The branch 'feature-vulcan' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D feature-vulcan'.
+qinghua@luqinghuadeMBP learngit % git branch -D feature-vulcan
+Deleted branch feature-vulcan (was 7f07cd0).
+qinghua@luqinghuadeMBP learngit % git branch -d issue-101
+error: The branch 'issue-101' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D issue-101'.
+qinghua@luqinghuadeMBP learngit % git remote
+origin
+qinghua@luqinghuadeMBP learngit % git remote -v
+origin	git@github.com:luqinghua007/learngit.git (fetch)
+origin	git@github.com:luqinghua007/learngit.git (push)
+qinghua@luqinghuadeMBP learngit % git push origin master
+Counting objects: 19, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (19/19), done.
+Writing objects: 100% (19/19), 1.88 KiB | 1.88 MiB/s, done.
+Total 19 (delta 9), reused 0 (delta 0)
+remote: Resolving deltas: 100% (9/9), completed with 1 local object.
+To github.com:luqinghua007/learngit.git
+   af9592f..3a632c8  master -> master
+qinghua@luqinghuadeMBP learngit % git pull
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:luqinghua007/learngit
+   3a632c8..b503dae  master     -> origin/master
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> dev
+
+qinghua@luqinghuadeMBP learngit % git pull origin master
+From github.com:luqinghua007/learngit
+ * branch            master     -> FETCH_HEAD
+
+zsh: suspended  git pull origin master
+qinghua@luqinghuadeMBP learngit % git rebase
+There is no tracking information for the current branch.
+Please specify which branch you want to rebase against.
+See git-rebase(1) for details.
+
+    git rebase <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> dev
+
+qinghua@luqinghuadeMBP learngit % git branch
+* dev
+  issue-101
+  master
+qinghua@luqinghuadeMBP learngit % git checkout master
+A	pullfile
+Switched to branch 'master'
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+qinghua@luqinghuadeMBP learngit % git rebase         
+Cannot rebase: Your index contains uncommitted changes.
+Please commit or stash them.
+qinghua@luqinghuadeMBP learngit % git log --graph --pretty=oneline --abbrev-commit
+*   3a632c8 (HEAD -> master) merge bug fix 101
+|\  
+| * 11cd1b4 (issue-101) fix bug 101
+|/  
+*   70f4e25 merge with no-ff
+|\  
+| * 75abf26 add merge
+|/  
+*   5df2a84 confict fixed
+|\  
+| * 9607b45 add confic file
+* | 1f827bc add master file change example
+|/  
+* 5310916 create a new branch dev
+* af9592f git command line doc
+* 5f4a966 del firstCopy.txt
+* 82337b7 两次修改后一次commit
+* 337c2ef 尝试将文件添加到暂存区后与二次修改的数据进行比较
+* 39dc80c update this file aggin
+* 31336d7 test submit two file together
+* c4a11fd wrote a first txt file
+qinghua@luqinghuadeMBP learngit % git branch 
+  dev
+  issue-101
+* master
+qinghua@luqinghuadeMBP learngit % git tag v20221116.1.0
+qinghua@luqinghuadeMBP learngit % git taf
+git: 'taf' is not a git command. See 'git --help'.
+
+The most similar command is
+	tag
+qinghua@luqinghuadeMBP learngit % git tag
+v20221116.1.0
+qinghua@luqinghuadeMBP learngit % git log
+commit 3a632c855bf3959dd417ed265a1547fecfb382ef (HEAD -> master, tag: v20221116.1.0)
+Merge: 70f4e25 11cd1b4
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 20:53:11 2022 +0800
+
+    merge bug fix 101
+
+commit 11cd1b40ff15aa2d9df9d6892ea7b4258ab7aba8 (issue-101)
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 20:52:15 2022 +0800
+
+    fix bug 101
+
+commit 70f4e253d5121ca6d2b43981685ee2359b67d04a
+Merge: 5df2a84 75abf26
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 20:46:38 2022 +0800
+
+    merge with no-ff
+
+commit 75abf2618fa273a96146fdd2e3e06351f6679ca9
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 20:45:54 2022 +0800
+
+    add merge
+
+commit 5df2a84f7c83576cb98bf386423032e0d905de15
+Merge: 1f827bc 9607b45
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 20:42:11 2022 +0800
+
+    confict fixed
+
+commit 1f827bc845e1d3ee84cf7bcbdaed05b682d8687b
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 20:39:13 2022 +0800
+
+    add master file change example
+
+commit 9607b4546542ce3008b1687e392008eaedaeb20f
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 20:37:40 2022 +0800
+
+    add confic file
+
+commit 531091629413c2817032deeb4cd73b6b263317bb
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 20:23:41 2022 +0800
+
+    create a new branch dev
+
+commit af9592fa9e28ef9b1d84a0ad11fede18f6729ca1
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 18:15:32 2022 +0800
+
+    git command line doc
+
+commit 5f4a96619deef93948893eb7eff45873cfa4bae6
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 17:25:18 2022 +0800
+
+    del firstCopy.txt
+
+commit 82337b742bdb67484ffad0a9d50e275257fae857
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 17:16:33 2022 +0800
+
+    两次修改后一次commit
+
+commit 337c2ef34d37cf5e51053557ffae429674252639
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 17:15:59 2022 +0800
+
+    尝试将文件添加到暂存区后与二次修改的数据进行比较
+
+commit 39dc80cd3d0759cbf326fdb05c635abc65e6a166
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 17:08:53 2022 +0800
+
+    update this file aggin
+
+commit 31336d7572a00f9297c877ba3dcce92cc4d3f367
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 17:01:05 2022 +0800
+
+    test submit two file together
+
+commit c4a11fd39b63def82b41b0f819f5a87b456d6f47
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 15:43:26 2022 +0800
+
+    wrote a first txt file
+qinghua@luqinghuadeMBP learngit % git tag v20221116.2.0 1f827bc845e1d3ee84cf7bcbdaed05b682d8687b
+qinghua@luqinghuadeMBP learngit % git tag
+v20221116.1.0
+v20221116.2.0
+qinghua@luqinghuadeMBP learngit % git show v20221116.1.0
+commit 3a632c855bf3959dd417ed265a1547fecfb382ef (HEAD -> master, tag: v20221116.1.0)
+Merge: 70f4e25 11cd1b4
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 20:53:11 2022 +0800
+
+    merge bug fix 101
+
+qinghua@luqinghuadeMBP learngit % git tag -a v20221116.3.0 -m "测试打标签的功能" 82337b742bdb67484ffad0a9d50e275257fae857
+qinghua@luqinghuadeMBP learngit % git tag
+v20221116.1.0
+v20221116.2.0
+v20221116.3.0
+qinghua@luqinghuadeMBP learngit % git show v20221116.3.0
+tag v20221116.3.0
+Tagger: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 21:18:12 2022 +0800
+
+测试打标签的功能
+
+commit 82337b742bdb67484ffad0a9d50e275257fae857 (tag: v20221116.3.0)
+Author: 花下客 <qinghua.lu@aliyun.com>
+Date:   Wed Nov 16 17:16:33 2022 +0800
+
+    两次修改后一次commit
+
+diff --git a/first.txt b/first.txt
+index faa5176..278085c 100644
+--- a/first.txt
++++ b/first.txt
+@@ -5,4 +5,4 @@ Something is change
+ 
+ Change something again
+ 
+-Test change001
+\ No newline at end of file
++Test change004
+\ No newline at end of file
+qinghua@luqinghuadeMBP learngit % git tag -d v20221116.2.0
+Deleted tag 'v20221116.2.0' (was 1f827bc)
+qinghua@luqinghuadeMBP learngit % git tag
+v20221116.1.0
+v20221116.3.0
+qinghua@luqinghuadeMBP learngit % git push origin v20221116.1.0
+Total 0 (delta 0), reused 0 (delta 0)
+To github.com:luqinghua007/learngit.git
+ * [new tag]         v20221116.1.0 -> v20221116.1.0
+qinghua@luqinghuadeMBP learngit % git push origin --tags
+Counting objects: 1, done.
+Writing objects: 100% (1/1), 203 bytes | 203.00 KiB/s, done.
+Total 1 (delta 0), reused 0 (delta 0)
+To github.com:luqinghua007/learngit.git
+ * [new tag]         v20221116.3.0 -> v20221116.3.0
+qinghua@luqinghuadeMBP learngit % git tag -d v20221116.1.0
+Deleted tag 'v20221116.1.0' (was 3a632c8)
+qinghua@luqinghuadeMBP learngit % git push origin origin :refs/tags/v20221116.1.0
+error: src refspec origin does not match any.
+error: failed to push some refs to 'git@github.com:luqinghua007/learngit.git'
+qinghua@luqinghuadeMBP learngit % git push origin :refs/tags/v20221116.1.0 
+To github.com:luqinghua007/learngit.git
+ - [deleted]         v20221116.1.0
+qinghua@luqinghuadeMBP learngit % 
