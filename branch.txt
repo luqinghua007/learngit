@@ -13,3 +13,5 @@ qinghua@luqinghuadeMBP learngit % git branch
   master
 qinghua@luqinghuadeMBP learngit % touch branch.txt
 qinghua@luqinghuadeMBP learngit % 
+
+Updat ebranch info
